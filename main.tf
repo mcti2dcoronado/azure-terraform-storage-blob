@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "azureresourcegroup" {
   location = "Canada Central"
 }
 
-resource "azurerm_storage_account" "my_storage_account" {
+resource "azurerm_storage_account" "mystorageaccount" {
   name                     = "my-storage-account"
   resource_group_name      = azurerm_resource_group.azureresourcegroup.name
   location                 = azurerm_resource_group.azureresourcegroup.location
@@ -12,16 +12,16 @@ resource "azurerm_storage_account" "my_storage_account" {
   account_replication_type = var.account_replication_type
 }
 
-resource "azurerm_storage_container" "my_container" {
+resource "azurerm_storage_container" "mycontainer" {
   name                  = "my_container"
-  storage_account_name  = azurerm_storage_account.my_storage_account.name
+  storage_account_name  = azurerm_storage_account.mystorageaccount.name
   container_access_type = var.container_access_type
 }
 
-resource "azurerm_storage_blob" "my_storage_blob" {
+resource "azurerm_storage_blob" "mystorageblob" {
   name                   = "my-zip"
-  storage_account_name   = azurerm_storage_account.my_stroage_account.name
-  storage_container_name = azurerm_storage_container.my_container.name
+  storage_account_name   = azurerm_storage_account.mystorageaccount.name
+  storage_container_name = azurerm_storage_container.mycontainer.name
   type                   = var.blob_type
   source                 = "var.blob_source"
 }
