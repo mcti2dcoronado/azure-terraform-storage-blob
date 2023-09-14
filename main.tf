@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "azureresourcegroup" {
 }
 
 resource "azurerm_storage_account" "mystorageaccount" {
-  name                     = "my-storage-account"
+  name                     = "mystorageaccount"
   resource_group_name      = azurerm_resource_group.azureresourcegroup.name
   location                 = azurerm_resource_group.azureresourcegroup.location
   account_tier             = var.account_tier
@@ -13,13 +13,13 @@ resource "azurerm_storage_account" "mystorageaccount" {
 }
 
 resource "azurerm_storage_container" "mycontainer" {
-  name                  = "my_container"
+  name                  = "mycontainer"
   storage_account_name  = azurerm_storage_account.mystorageaccount.name
   container_access_type = var.container_access_type
 }
 
 resource "azurerm_storage_blob" "mystorageblob" {
-  name                   = "my-zip"
+  name                   = "myzip"
   storage_account_name   = azurerm_storage_account.mystorageaccount.name
   storage_container_name = azurerm_storage_container.mycontainer.name
   type                   = var.blob_type
